@@ -1,3 +1,5 @@
 # 2023winter-seminar
 2023winter-seminar
-dd
+
+Jan 12
+Start project! git branch learned
