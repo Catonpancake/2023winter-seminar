@@ -1,0 +1,22 @@
+name: Run Flake8
+
+on: #Trigger of under statement
+  push:
+    branches: #main & dev branch push, do the action
+      - main
+      - dev
+  pull_request:
+      branches: #main & dev branch pull_request, do the action
+      - main
+      - dev
+  workflow_dispatch: #수동작업 가능하게 함
+  
+jobs: # What we are gonna do
+  flake8: #name
+    name: flake8 #not mendatory
+    runs-on: ubuntu-20.04 #PC run on. by github free pc
+    steps:
+      - uses: actions/checkout@v3 #Always put this line..
+      - run: |
+          pip install flake8
+          python3 -m flake8 .
