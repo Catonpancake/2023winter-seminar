@@ -1,4 +1,4 @@
-name: 23winter
+name: digitrec
 channels:
   - defaults
 dependencies:
@@ -108,6 +108,7 @@ dependencies:
   - python=3.10.9=h966fe2a_0
   - python-dateutil=2.8.2=pyhd3eb1b0_0
   - python-fastjsonschema=2.16.2=py310haa95532_0
+  - pytorch=1.12.1=cpu_py310h5e1f01c_0
   - pytz=2022.7=py310haa95532_0
   - pywin32=305=py310h2bbff1b_0
   - pywinpty=2.0.2=py310h5da7b33_0
@@ -156,17 +157,11 @@ dependencies:
     - contourpy==1.0.7
     - cycler==0.11.0
     - fonttools==4.38.0
-    - joblib==1.2.0
     - kiwisolver==1.4.4
     - matplotlib==3.6.3
     - pandas==1.5.2
     - pillow==9.4.0
     - pyparsing==3.0.9
     - qtconsole==5.4.0
-    - scikit-learn==1.2.0
-    - scipy==1.10.0
     - seaborn==0.12.2
-    - threadpoolctl==3.1.0
-    - torch==1.13.1
-    - torchvision==0.14.1
-prefix: C:\Users\Jiyoon\anaconda3\envs\23winter
+prefix: C:\Users\Jiyoon\anaconda3\envs\digitrec
