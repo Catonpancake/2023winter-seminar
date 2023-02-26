@@ -10,21 +10,29 @@ import torchvision.transforms as transforms
 
 class DigitDataset(Dataset):
     def __init__(self, img_dir, transform=None):
-        self.img_labels = pd.read_csv(img_dir)['label']
+        self.data = pd.read_csv(img_dir)
+        self.istrain = "label" in self.data.columns
         self.img_dir = img_dir
-        self.img = [np.reshape(row[1].values[1:],(28,28)) for row in pd.read_csv(img_dir).iterrows()]
+        self.img = self.data if not self.istrain else self.data.drop("label", axis=1)
+        self.img = [np.reshape(row[1].values,(28,28)) for row in self.img.iterrows()]
         self.transform = transform
         # self.target_transform = target_transform
         
     def __len__(self):
-        return len(self.img_labels)
+        return len(self.img)
 
     def __getitem__(self,idx):
         image = self.img[idx]
-        label = self.img_labels[idx]
         if self.transform:
             image = self.transform(image.astype(float))
+        if self.istrain:
+            label = self.data['label'][idx]
+            
+            return image, label
+        else:
+            return image
+
         # if self.target_transform:
         #     label = self.target_transform(label)
-        return image, label
+        
         
