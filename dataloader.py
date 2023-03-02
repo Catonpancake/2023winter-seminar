@@ -16,12 +16,11 @@ class DigitDataset(Dataset):
         self.img = self.data if not self.istrain else self.data.drop("label", axis=1)
         self.img = [np.reshape(row[1].values,(28,28)) for row in self.img.iterrows()]
         self.transform = transform
-        # self.target_transform = target_transform
         
     def __len__(self):
         return len(self.img)
 
-    def __getitem__(self,idx):
+    def __getitem__(self,idx: int):
         image = self.img[idx]
         if self.transform:
             image = self.transform(image.astype(float))
@@ -31,8 +30,5 @@ class DigitDataset(Dataset):
             return image, label
         else:
             return image
-
-        # if self.target_transform:
-        #     label = self.target_transform(label)
         
         
