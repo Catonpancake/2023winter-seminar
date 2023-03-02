@@ -16,21 +16,21 @@ import seaborn as sns
 from PIL import Image
 import matplotlib.pyplot as plt
 
-def reshape(imgdata: pd.DataFrame()):
-    img_reshaped = np.reshape(imgdata.values,(28,28))
 
+def reshape(imgdata: pd.DataFrame):
+    img_reshaped = np.reshape(imgdata.values,(28,28))
     return img_reshaped
 
+
 def drawimg(img, label=None):
-    if label == None:
-        plt.title(f'Label: {img[1]}')
-    else:
-        plt.title(f'Label: {label}')
+    plt.title(f"Label: {label or img[1]}")
     plt.imshow(img[0], cmap='gray')
+
 
 def tensor_to_pltimg(tensor_image):
     return tensor_image.permute(1,2,0).numpy()
     
+
 def multidrawimg(imgs, labels, batch_size: int=16):
     fig = plt.figure(figsize=[10,10])
     plt.subplots_adjust(top=0.9, wspace=0.2, hspace=0.35)
@@ -40,7 +40,7 @@ def multidrawimg(imgs, labels, batch_size: int=16):
         ax.imshow(tensor_to_pltimg(data), cmap='gray')
         
         
-def train(dataloader, model, loss_fn, optimizer, device):
+def train(dataloader: Dataloader, model: model, loss_fn, optimizer, device):
     size = len(dataloader.dataset)
     for batch, (X, y) in enumerate(dataloader):
         X, y = X.to(device).float(), y.to(device)
@@ -75,7 +75,12 @@ def test(dataloader, model, loss_fn, device, valid=True):
             correct /= size
             print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
         elif valid == False:
-            with open('Submission.csv', 'a+', newline='') as f:  # 'a+' means append to a file
+            counter = 0
+            filename = f"Submission_{counter}.csv"
+            while os.path.exists(filename):
+                counter += 1
+                filename = f"Submission_{counter}.csv"
+            with open(, 'a+', newline='') as f:  # 'a+' means append to a file
                 thewriter = csv.writer(f)
                 for X in dataloader:
                     X = X.to(device).float()
