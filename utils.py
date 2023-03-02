@@ -80,7 +80,7 @@ def test(dataloader, model, loss_fn, device, valid=True):
             while os.path.exists(filename):
                 counter += 1
                 filename = f"Submission_{counter}.csv"
-            with open(, 'a+', newline='') as f:  # 'a+' means append to a file
+            with open(filename, 'a+', newline='') as f:  # 'a+' means append to a file
                 thewriter = csv.writer(f)
                 for X in dataloader:
                     X = X.to(device).float()
