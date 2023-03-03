@@ -1,5 +1,9 @@
 #Data
 digit-recognizer/
+Submissions/
+
+#Model
+model.pth
 
 #Window
 desktop.ini
